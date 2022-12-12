@@ -22,4 +22,52 @@ public class AlbumServiceImpl implements AlbumService {
     public List<Album> getAllAlbum() {
         return list;
     }
+
+    @Override
+    public Album addAlbum(Album album) {
+        this.list.add(album);
+        return album;
+    }
+
+    @Override
+    public Album getAlbumByArtist(String albumArtist) {
+
+        Album c = null;
+
+        for(Album album:list) {
+            if(album.getArtist() == albumArtist) {
+                c = album;
+                break;
+            }
+        }
+        return c;
+    }
+
+    @Override
+    public Album updateAlbum(Album album) {
+
+        Album c = null;
+        for(Album album1:list) {
+            if(album1.getArtist() == album.getArtist()) {
+                album.setArtist(album.getArtist());
+                album.setGenre(album.getGenre());
+                album.setNumber_of_Songs(album.getNumber_of_Songs());
+                c = album1;
+                break;
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public String deleteAlbum(String albumArtist) {
+
+        for(Album album:list) {
+            if(album.getArtist() == albumArtist) {
+                list.remove(album);
+                break;
+            }
+        }
+        return "Deleted Successfully";
+    }
 }
